@@ -1,10 +1,22 @@
-
+var AllSavedStocks = require('../models/savedstocks');
 module.exports = {
-    async allsavedStocks(req, res) {
+    async getsavedStocks(req, res) {
+        console.log(req.body)
+            try {
+                var result = await AllSavedStocks.find();
+                console.log(result)
+                res.json(result)
+            } catch (error) {
+                console.log(error)
+                res.status(400).send(error)
+    
+            }
+    },
+    async addsavedStocks(req, res) {
         console.log(req.body)
         try {
             
-            await AllStocks.create({ ...req.body });
+            await AllSavedStocks.create({ ...req.body });
             return res.json({ success: true, message: 'stock added successfully' })
         } catch (error) {
             console.log(error)

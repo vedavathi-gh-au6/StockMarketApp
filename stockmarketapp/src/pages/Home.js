@@ -2,8 +2,9 @@ import React , {useState} from 'react'
 import MainPageLayout from '../components/MainPageLayout'
 import {apiGet} from '../misc/config';
 import {Row,Button,ListGroup} from 'react-bootstrap';
-import ShowTable from '../components/ShowTable';
+//import ShowTable from '../components/ShowTable';
 import Mdatatable from '../components/Mdatatable'
+
 
 
 const Home = () => {
@@ -48,7 +49,7 @@ const onKeyDown=(ev)=>{
 <MainPageLayout>
 
 <div className="searchbar">
-       <div className="flex-items"><h3>Stock details table</h3></div>
+       <div className="flex-items">Stock details table</div>
        <div className="flex-items">
            <input type="text" placeholder="Search for stocks" onChange={onInputChange} onKeyDown={onKeyDown}  value={input}/>
            <Button onClick={onSearch}>Search</Button >

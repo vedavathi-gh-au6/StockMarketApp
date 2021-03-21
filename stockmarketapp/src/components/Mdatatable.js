@@ -1,514 +1,508 @@
-import React from 'react';
-import { MDBDataTable } from 'mdbreact';
+import React ,{useEffect,useState} from 'react';
+import { MDBDataTableV5  } from 'mdbreact';
+import {Button} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table'
+import axios from 'axios';
+
+
 
 const Mdatatable = () => {
-  const data = {
-    columns: [
-      {
-        label: 'Name',
-        field: 'name',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Position',
-        field: 'position',
-        sort: 'asc',
-        width: 270
-      },
-      {
-        label: 'Office',
-        field: 'office',
-        sort: 'asc',
-        width: 200
-      },
-      {
-        label: 'Age',
-        field: 'age',
-        sort: 'asc',
-        width: 100
-      },
-      {
-        label: 'Start date',
-        field: 'date',
-        sort: 'asc',
-        width: 150
-      },
-      {
-        label: 'Salary',
-        field: 'salary',
-        sort: 'asc',
-        width: 100
-      }
-    ],
-    rows: [
-      {
-        name: 'Tiger Nixon',
-        position: 'System Architect',
-        office: 'Edinburgh',
-        age: '61',
-        date: '2011/04/25',
-        salary: '$320'
-      },
-      {
-        name: 'Garrett Winters',
-        position: 'Accountant',
-        office: 'Tokyo',
-        age: '63',
-        date: '2011/07/25',
-        salary: '$170'
-      },
-      {
-        name: 'Ashton Cox',
-        position: 'Junior Technical Author',
-        office: 'San Francisco',
-        age: '66',
-        date: '2009/01/12',
-        salary: '$86'
-      },
-      {
-        name: 'Cedric Kelly',
-        position: 'Senior Javascript Developer',
-        office: 'Edinburgh',
-        age: '22',
-        date: '2012/03/29',
-        salary: '$433'
-      },
-      {
-        name: 'Airi Satou',
-        position: 'Accountant',
-        office: 'Tokyo',
-        age: '33',
-        date: '2008/11/28',
-        salary: '$162'
-      },
-      {
-        name: 'Brielle Williamson',
-        position: 'Integration Specialist',
-        office: 'New York',
-        age: '61',
-        date: '2012/12/02',
-        salary: '$372'
-      },
-      {
-        name: 'Herrod Chandler',
-        position: 'Sales Assistant',
-        office: 'San Francisco',
-        age: '59',
-        date: '2012/08/06',
-        salary: '$137'
-      },
-      {
-        name: 'Rhona Davidson',
-        position: 'Integration Specialist',
-        office: 'Tokyo',
-        age: '55',
-        date: '2010/10/14',
-        salary: '$327'
-      },
-      {
-        name: 'Colleen Hurst',
-        position: 'Javascript Developer',
-        office: 'San Francisco',
-        age: '39',
-        date: '2009/09/15',
-        salary: '$205'
-      },
-      {
-        name: 'Sonya Frost',
-        position: 'Software Engineer',
-        office: 'Edinburgh',
-        age: '23',
-        date: '2008/12/13',
-        salary: '$103'
-      },
-      {
-        name: 'Jena Gaines',
-        position: 'Office Manager',
-        office: 'London',
-        age: '30',
-        date: '2008/12/19',
-        salary: '$90'
-      },
-      {
-        name: 'Quinn Flynn',
-        position: 'Support Lead',
-        office: 'Edinburgh',
-        age: '22',
-        date: '2013/03/03',
-        salary: '$342'
-      },
-      {
-        name: 'Charde Marshall',
-        position: 'Regional Director',
-        office: 'San Francisco',
-        age: '36',
-        date: '2008/10/16',
-        salary: '$470'
-      },
-      {
-        name: 'Haley Kennedy',
-        position: 'Senior Marketing Designer',
-        office: 'London',
-        age: '43',
-        date: '2012/12/18',
-        salary: '$313'
-      },
-      {
-        name: 'Tatyana Fitzpatrick',
-        position: 'Regional Director',
-        office: 'London',
-        age: '19',
-        date: '2010/03/17',
-        salary: '$385'
-      },
-      {
-        name: 'Michael Silva',
-        position: 'Marketing Designer',
-        office: 'London',
-        age: '66',
-        date: '2012/11/27',
-        salary: '$198'
-      },
-      {
-        name: 'Paul Byrd',
-        position: 'Chief Financial Officer (CFO)',
-        office: 'New York',
-        age: '64',
-        date: '2010/06/09',
-        salary: '$725'
-      },
-      {
-        name: 'Gloria Little',
-        position: 'Systems Administrator',
-        office: 'New York',
-        age: '59',
-        date: '2009/04/10',
-        salary: '$237'
-      },
-      {
-        name: 'Bradley Greer',
-        position: 'Software Engineer',
-        office: 'London',
-        age: '41',
-        date: '2012/10/13',
-        salary: '$132'
-      },
-      {
-        name: 'Dai Rios',
-        position: 'Personnel Lead',
-        office: 'Edinburgh',
-        age: '35',
-        date: '2012/09/26',
-        salary: '$217'
-      },
-      {
-        name: 'Jenette Caldwell',
-        position: 'Development Lead',
-        office: 'New York',
-        age: '30',
-        date: '2011/09/03',
-        salary: '$345'
-      },
-      {
-        name: 'Yuri Berry',
-        position: 'Chief Marketing Officer (CMO)',
-        office: 'New York',
-        age: '40',
-        date: '2009/06/25',
-        salary: '$675'
-      },
-      {
-        name: 'Caesar Vance',
-        position: 'Pre-Sales Support',
-        office: 'New York',
-        age: '21',
-        date: '2011/12/12',
-        salary: '$106'
-      },
-      {
-        name: 'Doris Wilder',
-        position: 'Sales Assistant',
-        office: 'Sidney',
-        age: '23',
-        date: '2010/09/20',
-        salary: '$85'
-      },
-      {
-        name: 'Angelica Ramos',
-        position: 'Chief Executive Officer (CEO)',
-        office: 'London',
-        age: '47',
-        date: '2009/10/09',
-        salary: '$1'
-      },
-      {
-        name: 'Gavin Joyce',
-        position: 'Developer',
-        office: 'Edinburgh',
-        age: '42',
-        date: '2010/12/22',
-        salary: '$92'
-      },
-      {
-        name: 'Jennifer Chang',
-        position: 'Regional Director',
-        office: 'Singapore',
-        age: '28',
-        date: '2010/11/14',
-        salary: '$357'
-      },
-      {
-        name: 'Brenden Wagner',
-        position: 'Software Engineer',
-        office: 'San Francisco',
-        age: '28',
-        date: '2011/06/07',
-        salary: '$206'
-      },
-      {
-        name: 'Fiona Green',
-        position: 'Chief Operating Officer (COO)',
-        office: 'San Francisco',
-        age: '48',
-        date: '2010/03/11',
-        salary: '$850'
-      },
-      {
-        name: 'Shou Itou',
-        position: 'Regional Marketing',
-        office: 'Tokyo',
-        age: '20',
-        date: '2011/08/14',
-        salary: '$163'
-      },
-      {
-        name: 'Michelle House',
-        position: 'Integration Specialist',
-        office: 'Sidney',
-        age: '37',
-        date: '2011/06/02',
-        salary: '$95'
-      },
-      {
-        name: 'Suki Burks',
-        position: 'Developer',
-        office: 'London',
-        age: '53',
-        date: '2009/10/22',
-        salary: '$114'
-      },
-      {
-        name: 'Prescott Bartlett',
-        position: 'Technical Author',
-        office: 'London',
-        age: '27',
-        date: '2011/05/07',
-        salary: '$145'
-      },
-      {
-        name: 'Gavin Cortez',
-        position: 'Team Leader',
-        office: 'San Francisco',
-        age: '22',
-        date: '2008/10/26',
-        salary: '$235'
-      },
-      {
-        name: 'Martena Mccray',
-        position: 'Post-Sales support',
-        office: 'Edinburgh',
-        age: '46',
-        date: '2011/03/09',
-        salary: '$324'
-      },
-      {
-        name: 'Unity Butler',
-        position: 'Marketing Designer',
-        office: 'San Francisco',
-        age: '47',
-        date: '2009/12/09',
-        salary: '$85'
-      },
-      {
-        name: 'Howard Hatfield',
-        position: 'Office Manager',
-        office: 'San Francisco',
-        age: '51',
-        date: '2008/12/16',
-        salary: '$164'
-      },
-      {
-        name: 'Hope Fuentes',
-        position: 'Secretary',
-        office: 'San Francisco',
-        age: '41',
-        date: '2010/02/12',
-        salary: '$109'
-      },
-      {
-        name: 'Vivian Harrell',
-        position: 'Financial Controller',
-        office: 'San Francisco',
-        age: '62',
-        date: '2009/02/14',
-        salary: '$452'
-      },
-      {
-        name: 'Timothy Mooney',
-        position: 'Office Manager',
-        office: 'London',
-        age: '37',
-        date: '2008/12/11',
-        salary: '$136'
-      },
-      {
-        name: 'Jackson Bradshaw',
-        position: 'Director',
-        office: 'New York',
-        age: '65',
-        date: '2008/09/26',
-        salary: '$645'
-      },
-      {
-        name: 'Olivia Liang',
-        position: 'Support Engineer',
-        office: 'Singapore',
-        age: '64',
-        date: '2011/02/03',
-        salary: '$234'
-      },
-      {
-        name: 'Bruno Nash',
-        position: 'Software Engineer',
-        office: 'London',
-        age: '38',
-        date: '2011/05/03',
-        salary: '$163'
-      },
-      {
-        name: 'Sakura Yamamoto',
-        position: 'Support Engineer',
-        office: 'Tokyo',
-        age: '37',
-        date: '2009/08/19',
-        salary: '$139'
-      },
-      {
-        name: 'Thor Walton',
-        position: 'Developer',
-        office: 'New York',
-        age: '61',
-        date: '2013/08/11',
-        salary: '$98'
-      },
-      {
-        name: 'Finn Camacho',
-        position: 'Support Engineer',
-        office: 'San Francisco',
-        age: '47',
-        date: '2009/07/07',
-        salary: '$87'
-      },
-      {
-        name: 'Serge Baldwin',
-        position: 'Data Coordinator',
-        office: 'Singapore',
-        age: '64',
-        date: '2012/04/09',
-        salary: '$138'
-      },
-      {
-        name: 'Zenaida Frank',
-        position: 'Software Engineer',
-        office: 'New York',
-        age: '63',
-        date: '2010/01/04',
-        salary: '$125'
-      },
-      {
-        name: 'Zorita Serrano',
-        position: 'Software Engineer',
-        office: 'San Francisco',
-        age: '56',
-        date: '2012/06/01',
-        salary: '$115'
-      },
-      {
-        name: 'Jennifer Acosta',
-        position: 'Junior Javascript Developer',
-        office: 'Edinburgh',
-        age: '43',
-        date: '2013/02/01',
-        salary: '$75'
-      },
-      {
-        name: 'Cara Stevens',
-        position: 'Sales Assistant',
-        office: 'New York',
-        age: '46',
-        date: '2011/12/06',
-        salary: '$145'
-      },
-      {
-        name: 'Hermione Butler',
-        position: 'Regional Director',
-        office: 'London',
-        age: '47',
-        date: '2011/03/21',
-        salary: '$356'
-      },
-      {
-        name: 'Lael Greer',
-        position: 'Systems Administrator',
-        office: 'London',
-        age: '21',
-        date: '2009/02/27',
-        salary: '$103'
-      },
-      {
-        name: 'Jonas Alexander',
-        position: 'Developer',
-        office: 'San Francisco',
-        age: '30',
-        date: '2010/07/14',
-        salary: '$86'
-      },
-      {
-        name: 'Shad Decker',
-        position: 'Regional Director',
-        office: 'Edinburgh',
-        age: '51',
-        date: '2008/11/13',
-        salary: '$183'
-      },
-      {
-        name: 'Michael Bruce',
-        position: 'Javascript Developer',
-        office: 'Singapore',
-        age: '29',
-        date: '2011/06/27',
-        salary: '$183'
-      },
-      {
-        name: 'Donna Snider',
-        position: 'Customer Support',
-        office: 'New York',
-        age: '27',
-        date: '2011/01/25',
-        salary: '$112'
-      }
-    ]
-  };
+    const [datatable, setDatatable] = React.useState({
+        columns: [
+          {
+            label: 'COMPANYNAME',
+            field: 'companyname',
+            width: 150,
+            attributes: {
+              'aria-controls': 'DataTable',
+              'aria-label': 'COMPANYNAME',
+            },
+          },
+          {
+            label: 'SYMBOL',
+            field: 'symbol',
+            width: 270,
+          },
+          {
+            label: 'MARKET CAP',
+            field: 'marketcap',
+            width: 200,
+          },
+          {
+            label: '',
+            field: '',
+            sort:  '',
+            width: 100,
+          },
+          {
+            label: 'CURRENT PRICE',
+            field: 'currentprice',
+            sort: 'disabled',
+            width: 150,
+          },
+     
+        ],
+        rows: [
+          {
+            companyname: 'Google',
+            symbol: 'ALP',
+            marketcap: '$144.4k',
+            '':<Button >View </Button >,
+            currentprice: '0.001USD',
+            
+          },
+          {
+            companyname: 'Amazon',
+            symbol: 'ALP',
+            marketcap: '$155.4k',
+            '':<Button >View </Button >,
+            currentprice: '0.001USD',
+            value: '$170',
+          },
+          {
+            companyname: 'Texas',
+            symbol: 'ALP',
+            marketcap: '$111M',
+            '':<Button >SAVE DATA </Button >,
+            currentprice: '0.001USD',
+            value: '$86',
+          },
+          {
+            companyname: 'Tesco',
+            symbol: 'ALP',
+            marketcap: '$533B',
+            '':<Button >SAVE DATA </Button >,
+            currentprice: '0.001USD',
+            value: '$433',
+          },
+          {
+            companyname: 'Walmart',
+            symbol: 'ALP',
+            marketcap: '$678M',
+            age: '33',
+            currentprice: '0.001USD',
+            value: '$162',
+          },
+          {
+            companyname: 'Brielle Williamson',
+            symbol: 'Integration Specialist',
+            marketcap: 'New York',
+            age: '61',
+            currentprice: '0.001USD',
+            value: '$372',
+          },
+          {
+            companyname: 'Herrod Chandler',
+            symbol: 'Sales Assistant',
+            marketcap: 'San Francisco',
+            age: '59',
+            currentprice: '0.001USD',
+            value: '$137',
+          },
+          {
+            companyname: 'Rhona Davidson',
+            symbol: 'Integration Specialist',
+            marketcap: 'Tokyo',
+            age: '55',
+            currentprice: '0.001USD',
+            value: '$327',
+          },
+          {
+            companyname: 'Colleen Hurst',
+            symbol: 'Javascript Developer',
+            marketcap: 'San Francisco',
+            age: '39',
+            currentprice: '2009/09/15',
+            value: '$205',
+          },
+          {
+            companyname: 'Sonya Frost',
+            symbol: 'Software Engineer',
+            marketcap: 'Edinburgh',
+            age: '23',
+            currentprice: '2008/12/13',
+            value: '$103',
+          },
+          {
+            companyname: 'Jena Gaines',
+            symbol: 'Office Manager',
+            marketcap: 'London',
+            age: '30',
+            currentprice: '2008/12/19',
+            value: '$90',
+          },
+          {
+            companyname: 'Quinn Flynn',
+            symbol: 'Support Lead',
+            marketcap: 'Edinburgh',
+            age: '22',
+            currentprice: '2013/03/03',
+            value: '$342',
+          },
+          {
+            companyname: 'Charde Marshall',
+            symbol: 'Regional Director',
+            marketcap: 'San Francisco',
+            age: '36',
+            currentprice: '2008/10/16',
+            value: '$470',
+          },
+          {
+            companyname: 'Haley Kennedy',
+            symbol: 'Senior Marketing Designer',
+            marketcap: 'London',
+            age: '43',
+            currentprice: '2012/12/18',
+            value: '$313',
+          },
+          {
+            companyname: 'Tatyana Fitzpatrick',
+            symbol: 'Regional Director',
+            marketcap: 'London',
+            age: '19',
+            currentprice: '2010/03/17',
+            value: '$385',
+          },
+          {
+            companyname: 'Michael Silva',
+            symbol: 'Marketing Designer',
+            marketcap: 'London',
+            age: '66',
+            currentprice: '2012/11/27',
+            value: '$198',
+          },
+          {
+            companyname: 'Paul Byrd',
+            symbol: 'Chief Financial Officer (CFO)',
+            marketcap: 'New York',
+            age: '64',
+            currentprice: '2010/06/09',
+            value: '$725',
+          },
+          {
+            companyname: 'Gloria Little',
+            symbol: 'Systems Administrator',
+            marketcap: 'New York',
+            age: '59',
+            currentprice: '2009/04/10',
+            value: '$237',
+          },
+          {
+            companyname: 'Bradley Greer',
+            symbol: 'Software Engineer',
+            marketcap: 'London',
+            age: '41',
+            currentprice: '2012/10/13',
+            value: '$132',
+          },
+          {
+            companyname: 'Dai Rios',
+            symbol: 'Personnel Lead',
+            marketcap: 'Edinburgh',
+            age: '35',
+            currentprice: '2012/09/26',
+            value: '$217',
+          },
+          {
+            companyname: 'Jenette Caldwell',
+            symbol: 'Development Lead',
+            marketcap: 'New York',
+            age: '30',
+            currentprice: '2011/09/03',
+            value: '$345',
+          },
+          {
+            companyname: 'Yuri Berry',
+            symbol: 'Chief Marketing Officer (CMO)',
+            marketcap: 'New York',
+            age: '40',
+            currentprice: '2009/06/25',
+            value: '$675',
+          },
+          {
+            companyname: 'Caesar Vance',
+            symbol: 'Pre-Sales Support',
+            marketcap: 'New York',
+            age: '21',
+            currentprice: '2011/12/12',
+            value: '$106',
+          },
+          {
+            companyname: 'Doris Wilder',
+            symbol: 'Sales Assistant',
+            marketcap: 'Sidney',
+            age: '23',
+            currentprice: '2010/09/20',
+            value: '$85',
+          },
+          {
+            companyname: 'Angelica Ramos',
+            symbol: 'Chief Executive Officer (CEO)',
+            marketcap: 'London',
+            age: '47',
+            currentprice: '2009/10/09',
+            value: '$1',
+          },
+          {
+            companyname: 'Gavin Joyce',
+            symbol: 'Developer',
+            marketcap: 'Edinburgh',
+            age: '42',
+            currentprice: '2010/12/22',
+            value: '$92',
+          },
+          {
+            companyname: 'Jennifer Chang',
+            symbol: 'Regional Director',
+            marketcap: 'Singapore',
+            age: '28',
+            currentprice: '2010/11/14',
+            value: '$357',
+          },
+          {
+            companyname: 'Brenden Wagner',
+            symbol: 'Software Engineer',
+            marketcap: 'San Francisco',
+            age: '28',
+            currentprice: '2011/06/07',
+            value: '$206',
+          },
+          {
+            companyname: 'Fiona Green',
+            symbol: 'Chief Operating Officer (COO)',
+            marketcap: 'San Francisco',
+            age: '48',
+            currentprice: '2010/03/11',
+            value: '$850',
+          },
+          {
+            companyname: 'Shou Itou',
+            symbol: 'Regional Marketing',
+            marketcap: 'Tokyo',
+            age: '20',
+            currentprice: '2011/08/14',
+            value: '$163',
+          },
+          {
+            companyname: 'Michelle House',
+            symbol: 'Integration Specialist',
+            marketcap: 'Sidney',
+            age: '37',
+            currentprice: '2011/06/02',
+            value: '$95',
+          },
+          {
+            companyname: 'Suki Burks',
+            symbol: 'Developer',
+            marketcap: 'London',
+            age: '53',
+            currentprice: '2009/10/22',
+            value: '$114',
+          },
+          {
+            companyname: 'Prescott Bartlett',
+            symbol: 'Technical Author',
+            marketcap: 'London',
+            age: '27',
+            currentprice: '2011/05/07',
+            value: '$145',
+          },
+          {
+            companyname: 'Gavin Cortez',
+            symbol: 'Team Leader',
+            marketcap: 'San Francisco',
+            age: '22',
+            currentprice: '2008/10/26',
+            value: '$235',
+          },
+          {
+            companyname: 'Martena Mccray',
+            symbol: 'Post-Sales support',
+            marketcap: 'Edinburgh',
+            age: '46',
+            currentprice: '2011/03/09',
+            value: '$324',
+          },
+          {
+            companyname: 'Unity Butler',
+            symbol: 'Marketing Designer',
+            marketcap: 'San Francisco',
+            age: '47',
+            currentprice: '2009/12/09',
+            value: '$85',
+          },
+          {
+            companyname: 'Howard Hatfield',
+            symbol: 'Office Manager',
+            marketcap: 'San Francisco',
+            age: '51',
+            currentprice: '2008/12/16',
+            value: '$164',
+          },
+          {
+            companyname: 'Hope Fuentes',
+            symbol: 'Secretary',
+            marketcap: 'San Francisco',
+            age: '41',
+            currentprice: '2010/02/12',
+            value: '$109',
+          },
+          {
+            companyname: 'Vivian Harrell',
+            symbol: 'Financial Controller',
+            marketcap: 'San Francisco',
+            age: '62',
+            currentprice: '2009/02/14',
+            value: '$452',
+          },
+          {
+            companyname: 'Timothy Mooney',
+            symbol: 'Office Manager',
+            marketcap: 'London',
+            age: '37',
+            currentprice: '2008/12/11',
+            value: '$136',
+          },
+          {
+            companyname: 'Jackson Bradshaw',
+            symbol: 'Director',
+            marketcap: 'New York',
+            age: '65',
+            currentprice: '2008/09/26',
+            value: '$645',
+          },
+          {
+            companyname: 'Olivia Liang',
+            symbol: 'Support Engineer',
+            marketcap: 'Singapore',
+            age: '64',
+            currentprice: '2011/02/03',
+            value: '$234',
+          },
+          {
+            companyname: 'Bruno Nash',
+            symbol: 'Software Engineer',
+            marketcap: 'London',
+            age: '38',
+            currentprice: '2011/05/03',
+            value: '$163',
+          },
+          {
+            companyname: 'Sakura Yamamoto',
+            symbol: 'Support Engineer',
+            marketcap: 'Tokyo',
+            age: '37',
+            currentprice: '2009/08/19',
+            value: '$139',
+          },
+          {
+            companyname: 'Thor Walton',
+            symbol: 'Developer',
+            marketcap: 'New York',
+            age: '61',
+            currentprice: '2013/08/11',
+            value: '$98',
+          },
+          {
+            companyname: 'Finn Camacho',
+            symbol: 'Support Engineer',
+            marketcap: 'San Francisco',
+            age: '47',
+            currentprice: '2009/07/07',
+            value: '$87',
+          },
+          {
+            companyname: 'Serge Baldwin',
+            symbol: 'Data Coordinator',
+            marketcap: 'Singapore',
+            age: '64',
+            currentprice: '2012/04/09',
+            value: '$138',
+          },
+          {
+            companyname: 'Zenaida Frank',
+            symbol: 'Software Engineer',
+            marketcap: 'New York',
+            age: '63',
+            currentprice: '2010/01/04',
+            value: '$125',
+          },
+          {
+            companyname: 'Zorita Serrano',
+            symbol: 'Software Engineer',
+            marketcap: 'San Francisco',
+            age: '56',
+            currentprice: '2012/06/01',
+            value: '$115',
+          },
+          {
+            companyname: 'Jennifer Acosta',
+            symbol: 'Junior Javascript Developer',
+            marketcap: 'Edinburgh',
+            age: '43',
+            currentprice: '2013/02/01',
+            value: '$75',
+          },
+          {
+            companyname: 'Cara Stevens',
+            symbol: 'Sales Assistant',
+            marketcap: 'New York',
+            age: '46',
+            currentprice: '2011/12/06',
+            value: '$145',
+          },
+          {
+            companyname: 'Hermione Butler',
+            symbol: 'Regional Director',
+            marketcap: 'London',
+            age: '47',
+            currentprice: '2011/03/21',
+            value: '$356',
+          },
+          {
+            companyname: 'Lael Greer',
+            symbol: 'Systems Administrator',
+            marketcap: 'London',
+            age: '21',
+            currentprice: '2009/02/27',
+            value: '$103',
+          },
+          {
+            companyname: 'Jonas Alexander',
+            symbol: 'Developer',
+            marketcap: 'San Francisco',
+            age: '30',
+            currentprice: '2010/07/14',
+            value: '$86',
+          },
+          {
+            companyname: 'Shad Decker',
+            symbol: 'Regional Director',
+            marketcap: 'Edinburgh',
+            age: '51',
+            currentprice: '2008/11/13',
+            value: '$183',
+          },
+          {
+            companyname: 'Michael Bruce',
+            symbol: 'Javascript Developer',
+            marketcap: 'Singapore',
+            age: '29',
+            currentprice: '2011/06/27',
+            value: '$183',
+          },
+          {
+            companyname: 'Donna Snider',
+            symbol: 'Customer Support',
+            marketcap: 'New York',
+            age: '27',
+            currentprice: '2011/01/25',
+            value: '$112',
+          },
+        ],
+      });
+    
+      return <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} />;
+    }
 
-  return (
-    <MDBDataTable
-      striped
-      bordered
-      small
-      data={data}
-    />
-  );
-}
-
-export default Mdatatable;
+    export default Mdatatable;

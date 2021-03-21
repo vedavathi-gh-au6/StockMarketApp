@@ -1,10 +1,12 @@
 
 
 var express = require('express');
-var { AddStocks } = require('../controllers/allstocks');
+var { addStocks, getStocks} = require('../controllers/allstocks');
 var router = express.Router();
 
-router.post("/allStocks", AddStocks);
+router.post("/addStocks", addStocks);
+router.get("/getStocks",getStocks) ;      
+
 
 
 
