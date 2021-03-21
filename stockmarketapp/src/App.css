@@ -70,5 +70,22 @@ flex-wrap:wrap;
   line-height: 1.0;
 }
 
+.header{
+  display:block;
+  background-color: lightsteelblue;
+  border:10px;
+  margin-top:20px;
+}
+.image{
+    display:flex;
+    flex-direction: row;
+    margin-right:15px;
+    margin-left: 50px;
+    align-items:flex-start;
+    height: fit-content;
+    width:auto;
+}
+
+
 
 

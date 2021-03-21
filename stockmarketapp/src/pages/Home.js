@@ -53,12 +53,10 @@ const onKeyDown=(ev)=>{
        <div className="flex-items">
            <input type="text" placeholder="Search for stocks" onChange={onInputChange} onKeyDown={onKeyDown}  value={input}/>
            <Button onClick={onSearch}>Search</Button >
-           
            </div>
-          
        </div>     
        <Mdatatable/>
-           {renderResults()}
+        {renderResults()}
                   
 </MainPageLayout>
 

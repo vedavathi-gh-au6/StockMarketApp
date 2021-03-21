@@ -6,9 +6,9 @@ import amazon from '../images/amazon.png'
 import {Row,Col} from 'react-bootstrap'
 const Herocards = () => {
     const HEROES=[
-        {name:"Google",image:{googleImage},stockvalue:'1521'},
-        {name:"Facebook",image:{facebook},stockvalue:'266'},
-        {name:"Amazon",image:{amazon},stockvalue:'3116'},
+        {name:"Google",image:"https://tse4.mm.bing.net/th?id=OIP.1sUxZaK9TnqWD6YLfRbkggHaEK&pid=Api&P=0&w=318&h=180",stockvalue:'1521'},
+        {name:"Facebook",image:"https://tse1.mm.bing.net/th?id=OIP.pQH2vq0fker_No4sLjIFxAHaF8&pid=Api&P=0&w=188&h=152",stockvalue:'266'},
+        {name:"Amazon",image:"https://tse3.mm.bing.net/th?id=OIP.k5XvM8pKxonydUFIDf5OjgHaEK&pid=Api&P=0&w=279&h=158",stockvalue:'3116'},
     ]
    
    

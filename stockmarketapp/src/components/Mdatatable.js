@@ -502,7 +502,11 @@ const Mdatatable = () => {
         ],
       });
     
-      return <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} />;
-    }
+      return (
+      <div className="container">
+      <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={datatable} />;
+      
+      </div>
+      )}
 
     export default Mdatatable;

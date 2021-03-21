@@ -1,10 +1,14 @@
 import React from 'react'
-
+import Navs from '../components/Navs'
+import Herocards from '../components/Herocards'
+import ViewTables from '../components/ViewTables'
 const View = () => {
     return (
         <div>
-           this is view page
-            
+           
+          <Navs/>
+          <Herocards/>
+          <ViewTables/>
         </div>
     )
 }
