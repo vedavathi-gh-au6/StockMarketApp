@@ -1,10 +1,12 @@
 import React from 'react';
 import Navs from './Navs';
+import Herocards from './Herocards';
 
 const MainPageLayout = ({children}) => {
     return (
-        <div>
-            <Navs />{children}
+        <div  className="mainPage">
+            <Navs />
+            <Herocards/>{children}
         </div>
     )
 }
